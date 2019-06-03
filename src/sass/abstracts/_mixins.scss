@@ -1,0 +1,49 @@
+// @mixin name {
+//     color: red;
+// }
+
+// body {
+//     @include name;
+// }
+
+// @mixin button {
+//     display: inline-block;
+//     padding: 1rem 2rem;
+//     text-decoration: none;
+// }
+
+// .btn-succes {
+//     @include button;
+//     color: green;
+//     background: #333;
+// }
+
+// @mixin example {
+//     .button {
+//         display: inline-block;
+//         padding: 1rem 2rem;
+//         text-decoration: none;
+//     }
+// }
+
+// .block {
+//     width: 500px;
+//     height: 400px;
+//     background: magenta;
+//     @include example;
+// }
+
+@mixin button($color: #fff, $bg: blue) {
+    display: inline-block;
+    padding: 1rem 2rem;
+    text: {
+        decoration: none;
+        transform: none;
+    }
+    color: $color;
+    background-color: $bg;
+}
+
+.btn-succes {
+    @include button(#fff, #000);
+}

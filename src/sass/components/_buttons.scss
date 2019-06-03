@@ -1,0 +1,27 @@
+// placeholder % не генерит css ждет для использования
+%button {
+    text: {
+        transform: uppercase;
+        decoration: none;
+    }
+    display: inline-block;
+    padding: 1rem 3rem;
+    transition: 0.3s ease-in-out;
+
+    &:hover {
+        transform: translate(0, -20%);
+    }
+}
+
+
+.btn-primary {
+    @extend %button;             // Наследование свойств
+    background-color: blue;
+    color: #fff;
+}
+
+.btn-secondary {
+    @extend %button;             // Наследование свойств
+    background-color: red;
+    color: #fff;
+}
