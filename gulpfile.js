@@ -26,10 +26,7 @@ function styles() {
     .pipe(sourcemaps.init())
     .pipe(sass().on('error', sass.logError))
     .pipe(concat('all.css'))
-    .pipe(autoprefixer({
-        browsers: ['last 2 versions'],
-        cascade: false
-    }))
+    .pipe(autoprefixer())
     // .pipe(cleanCSS({compatibility: 'ie8', level: 2}))
     .pipe(sourcemaps.write())
     .pipe(gulp.dest('./assets/css'))

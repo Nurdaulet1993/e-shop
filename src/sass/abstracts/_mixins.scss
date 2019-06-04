@@ -47,3 +47,76 @@
 .btn-succes {
     @include button(#fff, #000);
 }
+
+@mixin box() {
+    .box {
+        width: 100px;
+        height: 100px;
+        @content;
+    }
+}
+
+@include box {
+    background-color: red;
+
+    &--primary {
+        color: aqua;
+    }
+}
+
+// .box {
+//     width: 100px;
+//     height: 100px;
+//     background-color: red;
+// }
+
+// .box--primary {
+//     width: 100px;
+//     height: 100px;
+//     background-color: red;
+//     color: aqua;
+// }
+
+@mixin mq-small {
+    @media only screen and (max-width: 600px) {
+        @content;
+    }
+}
+
+@mixin mq-medium {
+    @media only screen and (max-width: 900px) {
+        @content;
+    }
+}
+
+@mixin mq-large {
+    @media only screen and (min-width: 900px) {
+        @content;
+    }
+}
+
+@mixin mq-custom($size) {
+    @media only screen and (max-width: $size) {
+        @content;
+    }
+}
+
+body {
+    padding: 1rem;
+
+    @include mq-small {
+        background-color: red;
+    }
+
+    @include mq-medium {
+        background-color: aqua;
+    }
+
+    @include mq-large {
+        background-color: greenyellow;
+    }
+
+    @include mq-custom(1500px) {
+        background-color: greenyellow;
+    }
+}

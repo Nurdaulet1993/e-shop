@@ -1,0 +1,27 @@
+$colors: red blue green;
+$list-with-nothing: ();
+$colors2: (#fff) (#333) (#787878);
+
+$shadow1: 0 1px 4px rgba(0, 0, 0, 0.3);
+$shadow2: 0 0 40px rgba(0, 0, 0, 0.1) inset;
+body {
+    background-color: nth($colors, 2);
+}
+
+@mixin shadow($shadows...) {
+    box-shadow: $shadows;
+}
+
+.card {
+    @include shadow($shadow1, $shadow2);
+}
+
+@mixin example($clr, $bg) {
+    color: $clr;
+    background: $bg;
+}
+$var: #fff #787878;
+
+.component {
+    @include example($var...);
+}
