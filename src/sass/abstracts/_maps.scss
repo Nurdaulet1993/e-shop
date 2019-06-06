@@ -1,0 +1,95 @@
+// MAP
+$my-map: (
+    primary: red,
+    secondary: yellow,
+    last: blue
+);
+
+@function colors($key) {
+    @return map-get($my-map, $key);
+}
+
+.block {
+    background-color: map-get($my-map, primary);
+    color: colors(secondary);
+}
+
+$breakpoints: (
+    small: 600px,
+    medium: 900px,
+    large: 1200px
+);
+
+@mixin mq($size) {
+    @if map-has-key($breakpoints, $size) {
+
+        $breakpoint: map-get($breakpoints, $size);
+
+        @media only screen and (min-width: $breakpoint) {
+            @content;
+        }
+
+    }@else if type-of($size) == number and not unitless($size) {
+
+        @media only screen and (min-width: $size) {
+            @content;
+        }
+
+    } @else {
+        @error 'The mq needs to be puted a number with units or jey from $breakpoints. You entered #{$size}'
+    }
+    
+}
+
+.nur {
+    color: red;
+    @include mq(500px){
+        background-color: #b58b88;
+    }
+}
+
+
+$links: (
+    normal: (
+        color: red,
+        font-weight: 600,
+    ),
+    secondary: (
+        color: blue,
+        font-weight: 400,
+    ),
+    action: (
+        color: brown,
+        font-weight: 300,
+    )
+);
+
+@each $link-name, $properties in $links {
+
+    .link-#{$link-name} {
+        text-decoration: none;
+        text-transform: uppercase;
+
+        @each $key, $value in $properties {
+            #{$key}: $value;
+        }
+    }
+}
+
+$colors: (
+    primary: red,
+    secondary: green,
+    last: yellow
+);
+
+@function clr($key) {
+    @if map-has-key($colors, $key){
+        @return map-get($colors, $key);
+    } @else {
+        @error 'Colors map doesn\'t have \'#{$key}\''
+    }
+}
+
+h2 {
+    color: clr(primary);
+}

@@ -120,3 +120,60 @@ body {
         background-color: greenyellow;
     }
 }
+
+
+$mycolor: magenta;
+
+@for $i from 1 to 5 {
+    .block-#{$i} {
+        color: lighten($mycolor, (10 * $i));
+    }
+}
+
+@each $variable in one, two, three {
+    .#{$variable} {
+        color: red;
+    }
+}
+
+@each $color in red, green, blue {
+    .#{$color} {
+        color: $color;
+    }
+}
+
+// @each $link, $color, $weight in (normal-link, red, bold), (second-link, green, 600){
+//     .#{$link} {
+//         color: $color;
+//         font-weight: $weight;
+//     }
+// }
+
+$links: (normal, red, 500), 
+        (primary, #333, 400), 
+        (succes, #b58b88, 300);
+
+@each $link-name, $color, $weight in $links {
+    .#{$link-name}--link {
+        color: $color;
+        font-weight: $weight;
+        background-color: if($link-name == succes, rgba(0, 0, 0, 0.7), magenta);
+        @if($link-name == succes) {
+            text-decoration: none;
+        } @else {
+            text-decoration: line-through;
+        }
+    }
+}
+
+$colors: (warning, red), (happy, green);
+
+.card {
+    @each $name, $color in $colors {
+        &--#{$name} {
+            color: $color;
+        }
+    }
+}
+
+
